@@ -12,7 +12,7 @@ This comes in extremely handy for field containing a Browser Title or Meta Descr
 
 References
 ------------
-Blog: COMING A.S.A.P.
+Blog: COMING A.S.A.P.  
 GitHub: https://github.com/ParTech/LimitedText-Field-Controls
 
 
