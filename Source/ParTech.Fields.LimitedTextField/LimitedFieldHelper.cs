@@ -8,6 +8,7 @@ using Sitecore;
 using System.Web;
 using Sitecore.Web;
 using Sitecore.Shell.Applications.ContentEditor;
+using Sitecore.Configuration;
 
 namespace ParTech.Field.LimitedTextField
 {
@@ -31,6 +32,7 @@ namespace ParTech.Field.LimitedTextField
             if (field.MaxLength > 0)
             {
                 field.Attributes["onkeyup"] = GetOnKeyUpScript(field);
+                field.Attributes["onchange"] = GetOnKeyUpScript(field);
                 field.Attributes["onkeydown"] = GetOnKeyDownScript(field);
             }
         }
@@ -94,12 +96,16 @@ namespace ParTech.Field.LimitedTextField
         public static string GetOnKeyDownScript(ILimitedField field)
         {
             var script = new StringBuilder();
-
+            
             script.Append("(function($, el, evt) {");
 
-            // Always allow backspace, delete and arrow keys
-            script.Append("if (evt.keyCode == 8 || evt.keyCode == 46 || evt.keyCode == 37 || evt.keyCode == 38 || evt.keyCode == 39 || evt.keyCode == 40)");
-            script.Append("return true;");
+            // Allow a certain list of keycodes to be used even when the maximum number of characters has been used
+            string allowedKeyCodes = Settings.GetSetting("ParTech.LimitedTextField.AllowedKeyCodes", "8,9,16,17,18,46,37,38,39,40");
+            script.AppendFormat("var allowedKeyCodes = [ {0} ];", allowedKeyCodes);
+
+            script.Append("for (var i = 0, imax = allowedKeyCodes.length; i < imax; i++)");
+            script.Append("  if (evt.keyCode == allowedKeyCodes[i])");
+            script.Append("    return true;");
 
             // Prevent keydown event when length surpassed max length
             script.AppendFormat("if ($(el).val().length >= {0}) {{", field.MaxLength);

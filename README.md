@@ -30,8 +30,12 @@ After installation, the new field types will be immediately ready for use
 Release notes
 -------------
 *1.0.0*
-- Initial release
+- Initial release.
 
+*1.0.1*
+- Added configuration setting that defines the JavaScript keycodes of keys that are allowed to be used when the maximum number of characters has been reached.
+- Added tab, shift, control and alt keys to default list of allowed keycodes.
+- Fixed a bug that allowed pasting content using the mouse even when the maximum number of characters was reached.
 
 Author
 ------
