@@ -12,13 +12,13 @@ This comes in extremely handy for field containing a Browser Title or Meta Descr
 
 References
 ------------
-Blog: http://www.partechit.nl/nl/blog/2013/03/text-fields-with-limited-length-and-feedback-during-editing 
+Blog: http://www.partechit.nl/nl/blog/2013/03/text-fields-with-limited-length-and-feedback-during-editing  
 GitHub: https://github.com/ParTech/LimitedText-Field-Controls
 
 
 Installation
 ------------
-The Sitecore package *\Release\ParTech.Fields.LimitedTextField-1.0.0.zip* contains:
+The Sitecore package *\Release\ParTech.Fields.LimitedTextField-1.0.1.zip* contains:
 - Binary (release build).
 - Configuration include file.
 - Core items that install two new field types.
