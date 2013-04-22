@@ -12,7 +12,7 @@ This comes in extremely handy for field containing a Browser Title or Meta Descr
 
 References
 ------------
-Blog: http://www.partechit.nl/nl/blog/2013/03/text-fields-with-limited-length-and-feedback-during-editing 
+Blog: http://www.partechit.nl/nl/blog/2013/03/text-fields-with-limited-length-and-feedback-during-editing  
 GitHub: https://github.com/ParTech/LimitedText-Field-Controls
 
 
