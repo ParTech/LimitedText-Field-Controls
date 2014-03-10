@@ -1,31 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.UI;
-using System.Collections;
-using Sitecore;
-using System.Web;
-using Sitecore.Web;
-using Sitecore.Shell.Applications.ContentEditor;
-using Sitecore.Configuration;
-
-namespace ParTech.Field.LimitedTextField
+﻿namespace ParTech.Field.LimitedTextField
 {
+    using System;
+    using System.Text;
+    using System.Web.UI;
+    using Sitecore.Configuration;
+    using Sitecore.Web;
+
     /// <summary>
     /// Provides static methods that support the LimitedField control classes
     /// </summary>
     public static class LimitedFieldHelper
     {
         /// <summary>
-        /// JavaScript keycodes of the keys that are allowed to be used when the maximum number of characters in the LimitedField's value has been reached.
-        /// </summary>
-        private static readonly int[] AllowedKeyCodes = { 8, 46, 37, 38, 39, 40 };
-
-        /// <summary>
         /// Handles the OnLoad event for LimitedField controls
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="field">The field.</param>
         public static void OnLoad(ILimitedField field)
         {
             // Don't limit field length when MaxLength was not specified
@@ -40,8 +29,9 @@ namespace ParTech.Field.LimitedTextField
         /// <summary>
         /// Must be called from the DoRender() eventhandler
         /// </summary>
-        /// <param name="output">The <see cref="T:System.Web.UI.HtmlTextWriter"/> object that receives the server control content.</param>
-        /// <param name="maxLength">Maximum length of the LimitedField value</param>
+        /// <param name="baseRender">The base render action.</param>
+        /// <param name="output">The <see cref="T:System.Web.UI.HtmlTextWriter" /> object that receives the server control content.</param>
+        /// <param name="field">The field.</param>
         public static void DoRender(Action baseRender, HtmlTextWriter output, ILimitedField field)
         {
             output.Write(@"<div style=""position:relative"">");
@@ -61,7 +51,7 @@ namespace ParTech.Field.LimitedTextField
         /// <summary>
         /// Get the JavaScript code for the onkeyup event of the LimitedField control.
         /// </summary>
-        /// <param name="maxLength"></param>
+        /// <param name="field">The field.</param>
         /// <returns></returns>
         public static string GetOnKeyUpScript(ILimitedField field)
         {
@@ -91,12 +81,12 @@ namespace ParTech.Field.LimitedTextField
         /// <summary>
         /// Get the JavaScript code for the onkeydown event of the LimitedField control.
         /// </summary>
-        /// <param name="maxLength"></param>
+        /// <param name="field">The field.</param>
         /// <returns></returns>
         public static string GetOnKeyDownScript(ILimitedField field)
         {
             var script = new StringBuilder();
-            
+
             script.Append("(function($, el, evt) {");
 
             // Allow a certain list of keycodes to be used even when the maximum number of characters has been used
@@ -120,7 +110,7 @@ namespace ParTech.Field.LimitedTextField
         /// <summary>
         /// Parse the Source property to extract the MaxLength value
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="field">The field.</param>
         /// <returns></returns>
         public static int GetMaxLength(ILimitedField field)
         {
