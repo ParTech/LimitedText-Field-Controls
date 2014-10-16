@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ParTech.Field.LimitedTextField")]
+[assembly: AssemblyTitle("ParTech.Modules.LimitedTextFields")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ParTech.Field.LimitedTextField")]
-[assembly: AssemblyCopyright("Copyright © 2013 ParTech IT")]
+[assembly: AssemblyProduct("ParTech.Modules.LimitedTextFields")]
+[assembly: AssemblyCopyright("Copyright © 2013-2014 ParTech IT")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,4 +33,4 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.2.0")]

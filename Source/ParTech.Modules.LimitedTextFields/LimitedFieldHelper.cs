@@ -1,4 +1,4 @@
-﻿namespace ParTech.Field.LimitedTextField
+﻿namespace ParTech.Modules.LimitedTextFields
 {
     using System;
     using System.Text;
@@ -57,10 +57,15 @@
         {
             var script = new StringBuilder();
 
-            script.Append("(function($, el) {");
+            script.Append("(function($, el, evt) {");
+
+            // Check if ctrl key was released.
+            script.Append("if (evt.keyCode == 17)");
+            script.Append("  window.ctrl_down = false;");
 
             // Strip all characters after max length characters
-            script.AppendFormat("$(el).val($(el).val().substring(0, {0}));", field.MaxLength);
+            script.AppendFormat("if ($(el).val().length > {0})", field.MaxLength);
+            script.AppendFormat("  $(el).val($(el).val().substring(0, {0}));", field.MaxLength);
 
             // Get the field label element and text
             script.Append("var label = $(el).parents('td').first('.scEditorFieldMarkerInputCell').find('div.scEditorFieldLabel');");
@@ -73,7 +78,7 @@
             // Display the amount of characters left after the field label text
             script.Append("label.text(labelText + charsLeftText);");
 
-            script.Append("}(jQuery, this))");
+            script.Append("}(jQuery, this, event))");
 
             return script.ToString();
         }
@@ -90,8 +95,14 @@
             script.Append("(function($, el, evt) {");
 
             // Allow a certain list of keycodes to be used even when the maximum number of characters has been used
-            string allowedKeyCodes = Settings.GetSetting("ParTech.LimitedTextField.AllowedKeyCodes", "8,9,16,17,18,46,37,38,39,40");
+            string allowedKeyCodes = Settings.GetSetting("ParTech.LimitedTextFields.AllowedKeyCodes", "8,9,13,16,17,18,20,27,46,32,35,36,37,38,39,40");
             script.AppendFormat("var allowedKeyCodes = [ {0} ];", allowedKeyCodes);
+
+            // Check if ctrl key was pressed.
+            script.Append("window.ctrl_down = (window.ctrl_down || evt.keyCode == 17);");
+
+            script.Append("if (window.ctrl_down)");
+            script.Append("  return true;");
 
             script.Append("for (var i = 0, imax = allowedKeyCodes.length; i < imax; i++)");
             script.Append("  if (evt.keyCode == allowedKeyCodes[i])");
@@ -114,7 +125,7 @@
         /// <returns></returns>
         public static int GetMaxLength(ILimitedField field)
         {
-            int maxLength = 0;
+            int maxLength;
 
             var dataSource = WebUtil.ParseQueryString(field.Source ?? string.Empty);
             int.TryParse(dataSource["MaxLength"], out maxLength);

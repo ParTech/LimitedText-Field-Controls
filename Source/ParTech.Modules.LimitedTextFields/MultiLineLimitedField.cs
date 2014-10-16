@@ -1,4 +1,4 @@
-﻿namespace ParTech.Field.LimitedTextField
+﻿namespace ParTech.Modules.LimitedTextFields
 {
     using System;
     using System.Web.UI;

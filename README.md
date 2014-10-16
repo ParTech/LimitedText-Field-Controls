@@ -18,7 +18,7 @@ GitHub: https://github.com/ParTech/LimitedText-Field-Controls
 
 Installation
 ------------
-The Sitecore package *\Release\ParTech.Fields.LimitedTextField-1.0.1.zip* contains:
+The Sitecore package *\Release\ParTech.Modules.LimitedTextFields-1.0.2.zip* contains:
 - Binary (release build).
 - Configuration include file.
 - Core items that install two new field types.
@@ -36,6 +36,13 @@ Release notes
 - Added configuration setting that defines the JavaScript keycodes of keys that are allowed to be used when the maximum number of characters has been reached.
 - Added tab, shift, control and alt keys to default list of allowed keycodes.
 - Fixed a bug that allowed pasting content using the mouse even when the maximum number of characters was reached.
+
+*1.0.2*
+- Fixed a bug that placed the cursor at the end of the field on all key down/up events.
+- Fixed a bug that disallowed keys to be pressed when ctrl is pressed (so ctrl+x, etc. does now work when the text field is full).
+- Added home, end and escape keys to default allowed keys.
+- Renamed the assembly and namespace to match that of other ParTech modules.  *Important:* Make sure to re-install the entire module with the installation package if you are already using an older version!
+
 
 Author
 ------
