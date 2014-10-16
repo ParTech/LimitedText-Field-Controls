@@ -41,7 +41,8 @@ Release notes
 - Fixed a bug that placed the cursor at the end of the field on all key down/up events.
 - Fixed a bug that disallowed keys to be pressed when ctrl is pressed (so ctrl+x, etc. does now work when the text field is full).
 - Added home, end and escape keys to default allowed keys.
-- Renamed the assembly and namespace to match that of other ParTech modules.  *Important:* Make sure to re-install the entire module with the installation package if you are already using an older version!
+- Renamed the assembly and namespace to match that of other ParTech modules.  
+**Important:** Make sure to re-install the entire module with the installation package if you are already using an older version!
 
 
 Author
